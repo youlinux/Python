@@ -1,0 +1,16 @@
+<html>
+    <h1>This is second Page</h1>
+
+<table border="1">
+<caption>书名</caption>  
+    {% for book in bookfront %} 
+        <tr>
+             <td>{{ book.title }}</td>   
+        </tr>
+    {% endfor %}
+
+</table>
+
+</html>
+
+
