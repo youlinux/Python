@@ -1,0 +1,13 @@
+<h1>hello world</h1>
+
+<div>
+<form action="" method="post"> {% csrf_token %}
+    {{ book_form }}
+    <select name="publisher_id">
+	{% for publisher in publishers %}
+	    <option value="{{ publisher.id }}">{{ publisher.name }} </option>
+        {% endfor %}  
+    </select> 
+    <input type="submit" value="新建图书">
+</form>
+</div>
