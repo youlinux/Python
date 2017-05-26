@@ -1,0 +1,17 @@
+<div>
+    <form method="post" action="">{% csrf_token %}
+
+        <div>{{ pub_form.user_type }} {{ pub_form.errors.title }}</div>
+        <div>{{ pub_form.title }}</div>
+        <div>{{ pub_form.email }}</div>
+        <div>{{ pub_form.phone }}</div>
+        <div>{{ pub_form.memo }}</div>
+
+
+        {% if pub_form.errors %}
+            {{ pub_form.errors }}
+        {% endif %}
+        <input type="submit" value="提交">
+    </form>
+
+</div>
