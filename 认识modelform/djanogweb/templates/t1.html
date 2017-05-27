@@ -1,0 +1,18 @@
+<html>
+<form method='post'> {% csrf_token %}
+    <style type="text/css">
+        .form-control{
+  	    background-color:red;
+	}
+        
+        .form-ele {
+	    padding:20px;
+	}
+    </style>
+    <!--{{ book_form }}--!>
+    {% for i in book_form  %}
+        <div class='form-ele'>{{ i.name }} {{ i }} {{ i.errors }}</div>
+    {% endfor %}
+    <input type="submit" value="新建图书">
+</form>
+</html>
