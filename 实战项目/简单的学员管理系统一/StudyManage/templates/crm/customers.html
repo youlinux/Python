@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% block page_header %}
+customers 客户信息列表
+{% endblock %}
+
+{% block page_context %}
+
+{{ customers_list }}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>qq</th>
+            <th>姓名</th>
+            <th>渠道</th>
+            <th>咨询课程</th>
+            <th>课程类型</th>
+            <th>状态</th>
+            <th>课程顾问</th>
+            <th>日期</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers_list %}
+            <tr>
+                <td>{{ customer.id }}</td>
+                <td>{{ customer.qq }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.source }}</td>
+                <td>{{ customer.course }}</td>
+                <td>{{ customer.get_class_type_display }}</td>
+
+                <!--样式名 和 类名相同-->
+                <td class="{{ customer.status }}">{{ customer.status| youlinux_upper }}</td> <!--| truncatechars:2-->
+                <td>{{ customer.consultant }}</td>
+                <td>{{ customer.date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination">
+
+<nav>
+  <ul class="pagination">
+    {% if customers_list.has_previous %}
+    <li class=""><a href="?page={{ customers_list.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+    {% endif %}
+    <!--<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>-->
+    {% for page_num in customers_list.paginator.page_range %}
+         {% if page_num == customers_list.number %}
+            <li class="active"><a href="?page={{ page_num }}">{{ page_num }} </a></li>
+         {% else %}
+             <li class=""><a href="?page={{ page_num }}">{{ page_num }} </a></li>
+         {% endif %}
+    {% endfor %}
+    {% if customers_list.has_next %}
+      <li class=""><a href="?page={{ customers_list.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+<span class="step-links">
+    {% if customers_list.has_previous %}
+        <a href="?page={{ customers_list.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current">
+        Page {{ customers_list.number }} of {{ customers_list.paginator.num_pages }}.
+    </span>
+
+    {% if customers_list.has_next %}
+        <a href="?page={{ customers_list.next_page_number }}">next</a>
+    {% endif %}
+</span>
+</div>
+
+{% endblock %}
