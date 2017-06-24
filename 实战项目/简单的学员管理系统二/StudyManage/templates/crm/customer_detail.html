@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% block page_header %}
+    客户详细信息列表
+{% endblock %}
+
+
+{% block page_context %}
+<form method="post"  class="form-horizontal"> {% csrf_token %}
+{#  {{ customer_form }}#}
+    {% for field in customer_form %}
+  <div class="form-group">
+      {% if field.field.required %}
+            <label  class="col-sm-2 control-label">*{{ field.label }}</label>
+      {% else %}
+            <label  style="font-weight: normal" class="col-sm-2 control-label">{{ field.label }}</label>
+      {% endif %}
+    <div class="col-sm-10">
+      {{ field }}
+      {{ field.errors }}
+{#        {% if field.errors %}#}
+{#        <ul>#}
+{#           {% for error in field.errors %}#}
+{#               <li style="color:red">{{ error }}</li>#}
+{#               {% endfor %}#}
+{#        </ul>#}
+{#        {% endif %} 不知道为何不显示错误信息#}
+    </div>
+  </div>
+    {% endfor %}
+    <div class="col-sm-12">
+        <input class="btn btn-success pull-right" type="submit" value="Save">
+    </div>
+</form>
+{% endblock %}
