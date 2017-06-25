@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>hello CRM</h1>
+{% block page-container %}
+Welcome To youlinux.com CRM
+
+{% if request.user.is_authenticated %}
+<div>
+    <span>{{ request.user.userprofile.name }}</span>
+    {% else %}
+    <span>登录失败</span>
+    {% endif %}
+</div>
+
+<a href="/accounts/logout/">退出系统</a>
+
+{% endblock %}
+</body>
+</html>

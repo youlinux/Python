@@ -1,0 +1,21 @@
+/**
+ * Created by sxj on 2017/6/3 0003.
+ */
+
+/*设置和状态一样的样式名*/
+/*省去判断的步骤*/
+.signed{
+    background-color: greenyellow;
+}
+
+.unregistered{
+    background-color: darkgray;
+}
+
+.graduated{
+    background-color: orange;
+}
+
+.drop-off{
+    background-color: white;
+}
