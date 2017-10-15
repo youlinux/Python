@@ -46,3 +46,6 @@ s.send(bytes_message)
 #接收响应信息
 replay=s.recv(4096)
 print(replay)
+
+#关闭socket 连接
+s.close()
